@@ -1,6 +1,8 @@
 package ro.teamnet.zth.api.em;
 
 import org.junit.Test;
+import ro.teamnet.zth.api.annotations.Column;
+import ro.teamnet.zth.api.annotations.Id;
 import ro.teamnet.zth.appl.domain.Department;
 import ro.teamnet.zth.appl.domain.Location;
 
@@ -29,6 +31,15 @@ public class EntityUtilsTest {
 
         assertEquals("Size should be 3", 3, response);
         assertEquals("Size should be 5", 5, response1);
+    }
+    @Test
+    public void testGetFieldsByAnnotations(){
+        int response = EntityUtils.getFieldsByAnnotations(Department.class, Column.class).size();
+        int response1 = EntityUtils.getFieldsByAnnotations(Department.class, Id.class).size();
+
+
+        assertEquals("Size should be 2", 2, response);
+        assertEquals("Size should be 1", 1, response1);
     }
 
 }
